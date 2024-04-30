@@ -19,7 +19,32 @@ app.post('/allData',async (req,res)=>{
     res.json({"data":user})
 })
 
+app.put('/allData',async (req,res)=>{
+    const {Email,Password,LastName,FirstName,Contact} = req.body;
+    const payload = {
+        Email,
+        Password,
+        LastName,
+        FirstName,
+        Contact
+    }
 
+    const user = await UserData.find(Email);
+    UserData.findByIdAndUpdate({_id:user._id},payload).then(function(item){
+      return  res.status(201).json({"Update Successfully":true})
+    })
+    res.send("oops")
+})
+
+app.delete('/allData',async (req,res)=>{
+    const {Email} = req.body;
+
+    const user = await UserData.find(Email);
+    UserData.findByIdAndDelete({_id:user._id}).then(function(item){
+      return  res.status(201).json({"Delete Successfully":true})
+    })
+    res.send("oops")
+})
 dbConnection().then(()=>{
     app.listen(port,function(){
         console.log("listening on port "+ port);
