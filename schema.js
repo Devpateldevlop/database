@@ -14,7 +14,10 @@ const UserShcema = new Schema({
         type: String,
         
     },
-    "Category":[{ type: String }]
+    "Category":[{
+        "cat":String,
+        "value":Number
+    }]
    
 }, { timestamps: true });
 module.exports = mongoose.model("UserData", UserShcema);
