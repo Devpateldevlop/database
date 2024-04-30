@@ -11,7 +11,7 @@ const UserShcema = new Schema({
     "Email": {
         required:[true,"please enter a valid email address"],
         type: String,
-        unique: true
+        
     },
     "Contact":{
         type: String
