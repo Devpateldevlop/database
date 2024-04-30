@@ -18,7 +18,6 @@ app.get('/allData',(req,res)=>{
     UserData.find().then((item)=>{
         res.status(200).json(item);
     })
-
 })
 app.post('/allData',async (req,res)=>{
     const alluser = req.body;
@@ -27,16 +26,15 @@ app.post('/allData',async (req,res)=>{
 })
 
 app.put('/allData',async (req,res)=>{
-    const { FirstName, LastName, Email, Password, Contact } = req.body;
-    const UserDataOld = await UserData.findOne({ Email });
+    const { Date,Month_Name,src,Category } = req.body;
+    const UserDataOld = await UserData.findOne({ Date });
     try {
 
-  
         const payload = {
-            FirstName,
-            LastName,
-            Contact,
-            Password
+            Date,
+            Month_Name,
+            src,
+            Category
         }
         UserData.updateOne({ _id: UserDataOld._id }, payload).then(odata => {
             res.send("Updated Successfully");
@@ -48,8 +46,8 @@ app.put('/allData',async (req,res)=>{
 })
 
 app.delete('/allData',async (req,res)=>{
-    const {Email} = req.body;
-    const UserDataOld = await UserData.findOne({ Email });
+    const {Date} = req.body;
+    const UserDataOld = await UserData.findOne({ Date });
     try {
         UserData.deleteOne({ _id: UserDataOld._id }).then(odata => {
             res.send("Delete Successfully");
