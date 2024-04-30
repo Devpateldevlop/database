@@ -20,20 +20,24 @@ app.post('/allData',async (req,res)=>{
 })
 
 app.put('/allData',async (req,res)=>{
-    const {Email,Password,LastName,FirstName,Contact} = req.body;
-    const payload = {
-        Email,
-        Password,
-        LastName,
-        FirstName,
-        Contact
+    const { FirstName, LastName, Email, Password, Contact } = req.body;
+    const UserDataOld = await UserData.findOne({ Email });
+    try {
+
+  
+        const payload = {
+            FirstName,
+            LastName,
+            Contact,
+            Password
+        }
+        UserData.updateOne({ _id: UserDataOld._id }, payload).then(odata => {
+            res.send("Updated Successfully");
+        })
+    } catch (err) {
+        return res.send(err);
     }
 
-    const user = await UserData.find(Email);
-    console.log(user);
-    const update =await UserData.findByIdAndUpdate({_id:user._id},payload);
-    res.send("successfull"+update);
-   
 })
 
 app.delete('/allData',async (req,res)=>{
