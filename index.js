@@ -8,7 +8,10 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 
 app.get('/allData',(req,res)=>{
-    res.json({"message":"welcome dev "})
+    UserData.find().then((item)=>{
+        res.status(200).json(item);
+    })
+
 })
 app.post('/allData',async (req,res)=>{
     const alluser = req.body;
