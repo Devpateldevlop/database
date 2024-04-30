@@ -30,6 +30,7 @@ app.put('/allData',async (req,res)=>{
     }
 
     const user = await UserData.find({Email});
+    console.log(user);
     const update =await UserData.findByIdAndUpdate({_id:user._id},payload);
     res.send("successfull"+update);
    
