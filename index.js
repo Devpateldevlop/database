@@ -42,12 +42,14 @@ app.put('/allData',async (req,res)=>{
 
 app.delete('/allData',async (req,res)=>{
     const {Email} = req.body;
-
-    const user = await UserData.find({Email});
-    UserData.findByIdAndDelete({_id:user._id}).then(function(item){
-      return  res.status(201).json({"Delete Successfully":true})
-    })
-    res.send("oops")
+    const UserDataOld = await UserData.findOne({ Email });
+    try {
+        UserData.deleteOne({ _id: UserDataOld._id }).then(odata => {
+            res.send("Delete Successfully");
+        })
+    } catch (err) {
+        return res.send(err);
+    }
 })
 dbConnection().then(()=>{
     app.listen(port,function(){
