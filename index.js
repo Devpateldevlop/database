@@ -30,10 +30,9 @@ app.put('/allData',async (req,res)=>{
     }
 
     const user = await UserData.find({Email});
-    UserData.findByIdAndUpdate({_id:user._id},payload).then(function(item){
-      return  res.status(201).json({"Update Successfully":true})
-    })
-    res.send("oops")
+    const update =await UserData.findByIdAndUpdate({_id:user._id},payload);
+    res.send("successfull"+update);
+   
 })
 
 app.delete('/allData',async (req,res)=>{
