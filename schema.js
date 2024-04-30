@@ -4,7 +4,7 @@ const UserShcema = new Schema({
     "Date": {
         required:[true,"please enter a valid email address"],
         unique:true,
-        type: String, 
+        type: Date, 
     },
     "Month_Name":{
         type: String,
