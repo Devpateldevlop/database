@@ -29,7 +29,7 @@ app.put('/allData',async (req,res)=>{
         Contact
     }
 
-    const user = await UserData.find(Email);
+    const user = await UserData.find({Email});
     UserData.findByIdAndUpdate({_id:user._id},payload).then(function(item){
       return  res.status(201).json({"Update Successfully":true})
     })
@@ -39,7 +39,7 @@ app.put('/allData',async (req,res)=>{
 app.delete('/allData',async (req,res)=>{
     const {Email} = req.body;
 
-    const user = await UserData.find(Email);
+    const user = await UserData.find({Email});
     UserData.findByIdAndDelete({_id:user._id}).then(function(item){
       return  res.status(201).json({"Delete Successfully":true})
     })
