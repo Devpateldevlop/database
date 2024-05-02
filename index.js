@@ -4,6 +4,7 @@ const app = express();
 const cors=require('cors')
 const dbConnection = require('./db');
 const UserData = require("./schema");
+const { Routers } = require('./router/category');
 const port = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors({
@@ -13,6 +14,8 @@ app.use(cors({
     "optionsSuccessStatus": 204
   }))
 app.use(express.urlencoded({extended:true}))
+
+app.use('/c',Routers)
 
 app.get('/allData',(req,res)=>{
     UserData.find().then((item)=>{
