@@ -8,7 +8,7 @@ const { Routers } = require('./router/category');
 const port = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors({
-    "origin": "*",
+    "origin": "https://fd571390trial.us10cf.trial.applicationstudio.cloud.sap/",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "optionsSuccessStatus": 204

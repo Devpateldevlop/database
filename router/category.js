@@ -11,12 +11,15 @@ Routers.route('/Category').get(async (req,res)=>{
         res.status(500).json(err);
     }
 })
+
 Routers.route('/Category').post(async (req,res)=>{
 
     const alluser = req.body;
     const user = await CategoryData.create(alluser);
     res.json({"data":user})
+    
 })
+
 Routers.route('/Category').delete(async (req,res)=>{
 
     const {Category} = req.body;
