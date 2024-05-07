@@ -8,7 +8,7 @@ const { Routers } = require('./router/category');
 const port = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors({
-    "origin": "https://api.cf.us10-001.hana.ondemand.com",
+    "origin": "*",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "optionsSuccessStatus": 204
