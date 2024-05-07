@@ -8,7 +8,7 @@ const { Routers } = require('./router/category');
 const port = process.env.PORT || 3000
 app.use(express.json());
 app.use(cors({
-    "origin": "*",
+    "origin": "https://api.cf.us10-001.hana.ondemand.com",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "optionsSuccessStatus": 204
@@ -32,7 +32,6 @@ app.put('/allData',async (req,res)=>{
     const { Date,Month_Name,src,Category } = req.body;
     const UserDataOld = await UserData.findOne({ Date });
     try {
-
         const payload = {
             Date,
             Month_Name,
@@ -45,7 +44,6 @@ app.put('/allData',async (req,res)=>{
     } catch (err) {
         return res.send(err);
     }
-
 })
 
 app.delete('/allData',async (req,res)=>{
